@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="cardview_width">150dp</dimen>
+    <dimen name="cardview_height">75dp</dimen>
+    <dimen name="cardview_corner_radius">7dp</dimen>
+    <dimen name="textsize_mycart">20sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="margin5">5dp</dimen>
+    <dimen name="margin40">40dp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="counterbuttontext">8sp</dimen>
+    <dimen name="textsmall">12sp</dimen>
+</resources>
