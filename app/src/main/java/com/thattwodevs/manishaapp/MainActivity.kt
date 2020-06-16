@@ -18,18 +18,17 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         val totalAmount = intent.getStringExtra("AMOUNT")
         val menu: ArrayList<Menu> = intent.getSerializableExtra("DATA") as ArrayList<Menu>
-        total_cost_textview.text="$"+totalAmount
+        total_cost_textview.text = "$" + totalAmount
 
 
         menu.removeAll {
-            it.count==0
+            it.count == 0
         }
-        if(menu.size<=2){
+        if (menu.size <= 2) {
             showmore.visibility = View.GONE
             val adapter = RecycleAdapter(menu, true, this)
             recyclerView.adapter = adapter
-        }
-        else {
+        } else {
             showmore.visibility = View.VISIBLE
 
             val shortMenu = ArrayList<Menu>()
@@ -43,17 +42,18 @@ class MainActivity : AppCompatActivity() {
         showmore.setOnClickListener {
             showmore.visibility = View.INVISIBLE
 
-            val adapter = RecycleAdapter(menu,true,this)
+            val adapter = RecycleAdapter(menu, true, this)
             recyclerView.adapter = adapter
         }
     }
+
     public fun getMyTotalQuantity(menu: ArrayList<Menu>) {
         var totalQuantity = 0
-        var totalAmount=0
+        var totalAmount = 0
         for (item in menu.indices) {
             totalQuantity = totalQuantity + menu.get(item).count
             totalAmount = totalAmount + (menu!!.get(item).count * menu!!.get(item).price)
-            total_cost_textview.text="$"+totalAmount.toString()
+            total_cost_textview.text = "$" + totalAmount.toString()
 
         }
         if (totalQuantity == 0) {

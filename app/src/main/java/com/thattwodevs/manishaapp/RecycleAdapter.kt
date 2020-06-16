@@ -23,7 +23,6 @@ class RecycleAdapter(val userList: ArrayList<Menu>, val isCart: Boolean, val con
         holder.bindItems(userList[position], isCart, context, userList)
     }
 
-    //this method is giving the size of the list
     override fun getItemCount(): Int {
         return userList.size
     }
@@ -48,12 +47,11 @@ class RecycleAdapter(val userList: ArrayList<Menu>, val isCart: Boolean, val con
             val chatImg = itemView.findViewById(R.id.chat_image) as ImageView
             if (isCart == true) {
                 chatImg.visibility = View.VISIBLE
-                if(menu.count>0){
-                    num!!.text=menu.count.toString()
+                if (menu.count > 0) {
+                    num!!.text = menu.count.toString()
                     add!!.visibility = View.GONE
                     countLayout!!.visibility = View.VISIBLE
-                }
-                else{
+                } else {
                     countLayout!!.visibility = View.GONE
                     add!!.visibility = View.VISIBLE
 
@@ -61,24 +59,21 @@ class RecycleAdapter(val userList: ArrayList<Menu>, val isCart: Boolean, val con
             } else chatImg.visibility = View.GONE
             item_name.text = menu.name
             item_desc.text = menu.desc
-            item_cost.text ="$"+ menu.price.toString()
-            if(menu.count>0){
-                num!!.text=menu.count.toString()
+            item_cost.text = "$" + menu.price.toString()
+            if (menu.count > 0) {
+                num!!.text = menu.count.toString()
                 add!!.visibility = View.GONE
                 countLayout!!.visibility = View.VISIBLE
-            }
-            else{
+            } else {
                 countLayout!!.visibility = View.GONE
                 add!!.visibility = View.VISIBLE
 
             }
-            countsManagement(menu, context, userList,isCart)
+            countsManagement(menu, context, userList, isCart)
         }
 
         fun countsManagement(menu: Menu, context: Context, userList: ArrayList<Menu>, isCart: Boolean) {
             var finalnum = menu.count
-            var sum = 0
-            sum = sum + menu.count
             num!!.text = finalnum.toString()
             minus!!.setOnClickListener {
                 if (finalnum > 0) {
@@ -88,10 +83,9 @@ class RecycleAdapter(val userList: ArrayList<Menu>, val isCart: Boolean, val con
                         add!!.visibility = View.VISIBLE
                         countLayout!!.visibility = View.GONE
                         menu.count = finalnum
-                        if(isCart==false) {
+                        if (isCart == false) {
                             (context as RestaurantActivity).getMyTotalQuantity(userList)
-                        }
-                        else{
+                        } else {
                             (context as MainActivity).getMyTotalQuantity(userList)
                         }
 
@@ -100,16 +94,13 @@ class RecycleAdapter(val userList: ArrayList<Menu>, val isCart: Boolean, val con
                         add!!.visibility = View.GONE
                         countLayout!!.visibility = View.VISIBLE
                         menu.count = finalnum
-                        if(isCart==false) {
+                        if (isCart == false) {
                             (context as RestaurantActivity).getMyTotalQuantity(userList)
-                        }
-                        else{
+                        } else {
                             (context as MainActivity).getMyTotalQuantity(userList)
                         }
-
                     }
-                }
-                else {
+                } else {
                     menu.count = 0
                     add!!.visibility = View.VISIBLE
                     countLayout!!.visibility = View.GONE
@@ -119,15 +110,12 @@ class RecycleAdapter(val userList: ArrayList<Menu>, val isCart: Boolean, val con
 
                 finalnum = menu.count + 1
                 num!!.text = finalnum.toString()
-                sum = 0
-                sum = sum + finalnum
                 add!!.visibility = View.GONE
                 countLayout!!.visibility = View.VISIBLE
                 menu.count = finalnum
-                if(isCart==false) {
+                if (isCart == false) {
                     (context as RestaurantActivity).getMyTotalQuantity(userList)
-                }
-                else{
+                } else {
                     (context as MainActivity).getMyTotalQuantity(userList)
                 }
             }
@@ -137,10 +125,9 @@ class RecycleAdapter(val userList: ArrayList<Menu>, val isCart: Boolean, val con
                 menu.count = 1
                 num!!.text = menu.count.toString()
 
-                if(isCart==false) {
+                if (isCart == false) {
                     (context as RestaurantActivity).getMyTotalQuantity(userList)
-                }
-                else{
+                } else {
                     (context as MainActivity).getMyTotalQuantity(userList)
                 }
 

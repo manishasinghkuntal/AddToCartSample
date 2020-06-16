@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.activity_restaurant.*
 class RestaurantActivity : AppCompatActivity() {
     var cart: TextView? = null
     var totalItems = 0
-    var adapter:RecycleAdapter?=null
-    var menu:ArrayList<Menu>?=null
+    var adapter: RecycleAdapter? = null
+    var menu: ArrayList<Menu>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant)
@@ -24,10 +24,7 @@ class RestaurantActivity : AppCompatActivity() {
         recyclerView2.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView2.setFocusable(false)
         recyclerView2.setNestedScrollingEnabled(false)
-         menu = ArrayList<Menu>()
-
-        //adding some dummy data to the list
-
+        menu = ArrayList<Menu>()
 
         menu!!.add(Menu("Pizza", "Description for pizza", 20, 0))
         menu!!.add(Menu("Burger", "Description for Burger", 100, 0))
@@ -41,20 +38,20 @@ class RestaurantActivity : AppCompatActivity() {
         recyclerView2.adapter = adapter
         var totalAmount = 0
         cart!!.setOnClickListener {
-            for(item in menu!!.indices){
+            for (item in menu!!.indices) {
                 totalAmount = totalAmount + (menu!!.get(item).count * menu!!.get(item).price)
             }
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("AMOUNT",totalAmount.toString())
-            intent.putExtra("DATA",menu)
+            intent.putExtra("AMOUNT", totalAmount.toString())
+            intent.putExtra("DATA", menu)
             startActivity(intent)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        for(item in menu!!.indices){
-            menu!!.get(item).count=0
+        for (item in menu!!.indices) {
+            menu!!.get(item).count = 0
         }
         cart!!.visibility = View.GONE
         adapter!!.notifyDataSetChanged()
@@ -64,7 +61,7 @@ class RestaurantActivity : AppCompatActivity() {
         var totalQuantity = 0
         for (item in menu.indices) {
 
-                totalQuantity = totalQuantity + menu.get(item).count
+            totalQuantity = totalQuantity + menu.get(item).count
         }
         if (totalQuantity == 0) {
             cart!!.visibility = View.GONE
